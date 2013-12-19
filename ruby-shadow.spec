@@ -1,20 +1,21 @@
+%define pkgname shadow
 Summary:	Ruby bindings for shadow password access
-Name:		ruby-shadow
+Name:		ruby-%{pkgname}
 Version:	1.4.1
-Release:	1
+Release:	2
 License:	Public Domain
-Group:		Libraries
-URL:		http://ttsky.net/
+Group:		Development/Languages
 Source0:	http://ttsky.net/src/%{name}-%{version}.tar.gz
 # Source0-md5:	425b742ac43bff359c1717360f761790
 Patch0:		ruby-1.9-support.patch
 Patch1:		cflags.patch
-BuildRequires:	rpmbuild(macros) >= 1.484
+URL:		http://ttsky.net/
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.665
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-modules
 BuildRequires:	setup.rb
-%{?ruby_mod_ver_requires_eq}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,13 +29,13 @@ iconv -f EUCJP -t utf8 -o README.ja README.euc
 
 %build
 %{__ruby} extconf.rb \
+	--vendor \
 	--with-cflags="%{rpmcflags}"
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make}  install \
-	sitearchdir=$RPM_BUILD_ROOT%{ruby_archdir} \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -44,4 +45,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc HISTORY README
 %doc %lang(ja) README.ja
-%attr(755,root,root) %{ruby_archdir}/shadow.so
+%attr(755,root,root) %{ruby_vendorarchdir}/shadow.so
