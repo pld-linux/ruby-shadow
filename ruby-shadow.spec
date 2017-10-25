@@ -2,7 +2,7 @@
 Summary:	Ruby bindings for shadow password access
 Name:		ruby-%{pkgname}
 Version:	1.4.1
-Release:	4
+Release:	5
 License:	Public Domain
 Group:		Development/Languages
 Source0:	http://ttsky.net/src/%{name}-%{version}.tar.gz
