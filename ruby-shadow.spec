@@ -1,16 +1,14 @@
 %define pkgname shadow
 Summary:	Ruby bindings for shadow password access
 Name:		ruby-%{pkgname}
-Version:	1.4.1
-Release:	6
+Version:	2.5.0
+Release:	1
 License:	Public Domain
 Group:		Development/Languages
-Source0:	http://ttsky.net/src/%{name}-%{version}.tar.gz
-# Source0-md5:	425b742ac43bff359c1717360f761790
-Patch0:		ruby-1.9-support.patch
+Source0:	https://github.com/apalmblad/ruby-shadow/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	e9c35620f6c25233b7b54dcab8ee955e
 Patch1:		cflags.patch
-Patch2:		ruby-2.0.patch
-URL:		http://ttsky.net/
+URL:		https://github.com/apalmblad/ruby-shadow
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
 BuildRequires:	ruby >= 1:1.8.6
@@ -23,10 +21,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Ruby bindings for shadow password access.
 
 %prep
-%setup -q -n shadow-%{version}
-%patch0 -p1
+%setup -q
 %patch1 -p1
-%patch2 -p1
 iconv -f EUCJP -t utf8 -o README.ja README.euc
 
 %build
