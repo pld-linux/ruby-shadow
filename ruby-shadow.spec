@@ -22,7 +22,7 @@ Ruby bindings for shadow password access.
 
 %prep
 %setup -q
-%patch1 -p1
+%patch -P1 -p1
 iconv -f EUCJP -t utf8 -o README.ja README.euc
 
 %build
